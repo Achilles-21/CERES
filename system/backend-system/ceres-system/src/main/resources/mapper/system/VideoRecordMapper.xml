@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceres.system.mapper.VideoRecordMapper">
+    <insert id="saveBatchList" parameterType="java.util.List">
+        insert into video_record
+            (pop_id, que_id, que_content, user_id, user_options, result, create_time)
+        values
+        <foreach item="videoRecord" index="index" collection="videoRecordList" separator=",">
+            (#{videoRecord.popId}, #{videoRecord.queId}, #{videoRecord.queContent}, #{videoRecord.userId}, #{videoRecord.userOptions}, #{videoRecord.result}, #{videoRecord.createTime})
+        </foreach>
+    </insert>
+</mapper>

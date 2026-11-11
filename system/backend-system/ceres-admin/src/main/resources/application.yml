@@ -1,0 +1,102 @@
+server:
+  port: ${CERES_JAVA_PORT:18081}
+  servlet:
+    context-path: /
+  tomcat:
+    uri-encoding: UTF-8
+    accept-count: 1000
+    threads:
+      max: 800
+      min-spare: 100
+logging:
+  level:
+    com.ceres: debug
+    org.springframework: warn
+user:
+  password:
+    maxRetryCount: 5
+    lockTime: 10
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    druid:
+      slave:
+        enabled: false
+        url: null
+        username: null
+        password: null
+      initialSize: 5
+      minIdle: 10
+      maxActive: 20
+      maxWait: 60000
+      connectTimeout: 30000
+      socketTimeout: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      maxEvictableIdleTimeMillis: 900000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      webStatFilter:
+        enabled: true
+      statViewServlet:
+        enabled: false
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+  messages:
+    basename: i18n/messages
+  servlet:
+    multipart:
+      max-file-size: 3072MB
+      max-request-size: 3072MB
+  devtools:
+    restart:
+      enabled: false
+  redis:
+    timeout: 10s
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-active: 8
+        max-wait: -1ms
+    host: ${CERES_REDIS_HOST:localhost}
+    port: ${CERES_REDIS_PORT:6379}
+    database: ${CERES_REDIS_DATABASE:0}
+    password: ${CERES_REDIS_PASSWORD}
+token:
+  header: Authorization
+  secret: ${CERES_JWT_SECRET}
+  expireTime: 1440
+mybatis-plus:
+  typeAliasesPackage: com.ceres.**.domain
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
+pagehelper:
+  helperDialect: mysql
+  supportMethodsArguments: true
+  params: count=countSql
+swagger:
+  enabled: false
+  pathMapping: /dev-api
+xss:
+  enabled: true
+  excludes: /system/notice
+  urlPatterns: /system/*,/monitor/*,/tool/*
+ceres:
+  name: CERES
+  version: 3.8.8
+  copyrightYear: 2024
+  profile: ${CERES_UPLOAD_DIR:./runtime/uploads}
+  addressEnabled: false
+  captchaType: math

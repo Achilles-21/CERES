@@ -1,0 +1,19 @@
+{
+  "reward_version": "default",
+  "parameter_source": "implementation_defaults",
+  "alpha": 0.2,
+  "beta": 0.3,
+  "gamma": 0.4,
+  "mu1": 0.6,
+  "mu2": 0.2,
+  "mu3": 0.2,
+  "lambda_fmt": 0.1,
+  "lambda_loop": 0.1,
+  "gamma_d": 1.0,
+  "lambda_seq": 0.5,
+  "epsilon": 0.000001,
+  "rho": {"recall>hint": 1.0, "hint>correct": 1.0, "recall>correct": 1.0},
+  "step_reward_source": "terminal_sequence_reward",
+  "risk_weight": 0.0,
+  "end_penalty": 0.0
+}

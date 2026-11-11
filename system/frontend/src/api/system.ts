@@ -1,0 +1,11 @@
+import requert from "@/utils/fetch"
+export const login = (data: LoginData) =>requert({url:'/login',method:'post',data},true)
+export const getLanguageOption = () => requert({ url: '/system/dict/data/type/sys_language', method: 'get' })
+export const getPPT = (data) => requert({ url: '/ppt/getPPTFile', method: 'get', data })
+export const getReport = (data) => requert({ url: '/report/getReportByVideoId', method: 'get', data })
+export const getLogList = (data) => requert({ url: "/monitor/operlog/page", data })
+export const updateAvatar = (data) => requert({ url: '/system/user/profile/avatar', method: 'put', data })
+export const updateTeacherAvatar = (data) => requert({ url: "/teacher/picture/update", method: "post", data })
+export const setModalTime = (data) => requert({url:"/moduleTime",method:"get",data})
+export const setDuration = (data) => requert({url:"/duration/add",method:"get",data})
+export const getDurationHeatmap = (data?: { days?: number }) => requert({ url: "/duration/heatmap", method: "get", data })

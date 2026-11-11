@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceres.system.mapper.InvitationPictureMapper">
+
+    <insert id="saveBatchList" parameterType="java.util.List">
+        insert into invitation_picture
+        (invitation_id, picture_url, create_time)
+        values
+        <foreach item="invitationPicture" index="index" collection="invitationPictureList" separator=",">
+            (#{invitationPicture.invitationId}, #{invitationPicture.pictureUrl}, #{invitationPicture.createTime})
+        </foreach>
+    </insert>
+
+</mapper>

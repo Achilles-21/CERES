@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceres.system.mapper.ExamCateMapper">
+
+    <select id="getExamCateList" resultType="com.ceres.system.domain.vo.resp.ExamCateResp">
+        select e.id, e.name, e.image_id, e.create_time, e.auth, e.limit_time,
+            f.file_url as imageUrl, f.size, er.id as resultId
+        from
+            exam_cate e
+        left join exam_result er on e.id = er.cate_id
+        <if test="userId != null and userId > 0">
+            and er.user_id = #{userId}
+        </if>
+        left join file_info f on e.image_id = f.id
+    </select>
+
+    <select id="getFrontExamCateList" resultType="com.ceres.system.domain.vo.resp.ExamCateResp">
+        select e.id, e.name, e.image_id, e.create_time, e.auth, e.limit_time,
+            f.file_url as imageUrl, f.size, er.id as resultId
+        from
+            exam_cate e
+        left join exam_result er on e.id = er.cate_id and er.user_id = #{userId}
+        left join file_info f on e.image_id = f.id
+        where e.auth != 0
+        <if test="level == 1">
+            and e.auth = 2
+        </if>
+    </select>
+
+</mapper>

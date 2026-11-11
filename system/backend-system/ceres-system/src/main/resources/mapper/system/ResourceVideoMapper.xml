@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceres.system.mapper.ResourceVideoMapper">
+
+    <select id="getVideoList" resultType="com.ceres.system.domain.vo.resp.ResourceVideoResp">
+        select v.id, v.name, v.file_id, v.poster_id, v.duration, v.create_time, v.del_flag, v.description, v.hits, v.is_show,
+            f1.file_url as videoUrl, f2.file_url as posterUrl, f1.size
+        from
+            resource_video v
+        left join file_info f1 on v.file_id = f1.id
+        left join file_info f2 on v.poster_id = f2.id
+        where
+            v.del_flag = '0'
+        <if test="name != null and name != ''">
+            and v.name like concat('%', #{name}, '%')
+        </if>
+    </select>
+
+    <select id="getVideoListOnShow" resultType="com.ceres.system.domain.vo.resp.ResourceVideoResp">
+        select v.id, v.name, v.file_id, v.poster_id, v.duration, v.create_time, v.del_flag, v.description, v.hits, v.is_show,
+            f1.file_url as videoUrl, f2.file_url as posterUrl, f1.size
+        from
+            resource_video v
+        left join file_info f1 on v.file_id = f1.id
+        left join file_info f2 on v.poster_id = f2.id
+        where
+            v.del_flag = '0'
+            and v.is_show = 1
+        <if test="name != null and name != ''">
+            and v.name like concat('%', #{name}, '%')
+        </if>
+    </select>
+
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="resourceVideoList" item="video" index="index" open="" close="" separator=";">
+            update resource_video
+            <set>
+                <if test="video.hits!=null and video.hits!=''">
+                    hits = #{video.hits}
+                </if>
+            </set>
+            where id = #{video.id}
+        </foreach>
+    </update>
+
+    <update id="updateBatchPptUrl" parameterType="java.util.List">
+        <foreach collection="resourceVideoList" item="video" index="index" open="" close="" separator=";">
+            update resource_video
+            <set>
+                <if test="video.pptUrl!=null and video.pptUrl!=''">
+                    ppt_url = #{video.pptUrl}
+                </if>
+            </set>
+            where id = #{video.id}
+        </foreach>
+    </update>
+
+</mapper>

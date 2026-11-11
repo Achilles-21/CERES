@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceres.system.mapper.DurationMapper">
+
+    <select id="getLastUserDuration" resultType="com.ceres.system.domain.Duration">
+        select id, type, user_id, start_time, end_time, day
+        from duration
+        where user_id = #{userId}
+        and `type` = #{type}
+        order by id desc
+        limit 1
+    </select>
+
+    <select id="getHeatmapTypeStats" resultType="com.ceres.system.domain.vo.stat.DurationHeatmapTypeStat">
+        select day,
+               `type`,
+               count(1) as sessionCount
+        from duration
+        where user_id = #{userId}
+          and day between #{startDay} and #{endDay}
+          and `type` in
+          <foreach collection="types" item="type" open="(" separator="," close=")">
+              #{type}
+          </foreach>
+        group by day, `type`
+        order by day asc
+    </select>
+
+</mapper>

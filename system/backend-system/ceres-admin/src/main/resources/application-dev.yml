@@ -1,0 +1,19 @@
+# Required credentials have no default. Set them in the process environment.
+spring:
+  datasource:
+    druid:
+      master:
+        url: ${CERES_DB_URL}
+        username: ${CERES_DB_USER}
+        password: ${CERES_DB_PASSWORD}
+minio:
+  endpoint: ${CERES_MINIO_ENDPOINT:http://localhost:10008}
+  trueEndpoint: ${CERES_MINIO_PUBLIC_ENDPOINT:http://localhost:10008}
+  accessKey: ${CERES_MINIO_ACCESS_KEY}
+  accessSecret: ${CERES_MINIO_SECRET_KEY}
+  bucketName: ${CERES_MINIO_BUCKET:ceres}
+vod:
+  secretId: ${CERES_VOD_SECRET_ID}
+  secretKey: ${CERES_VOD_SECRET_KEY}
+  region: ${CERES_VOD_REGION:ap-shanghai}
+  appId: ${CERES_VOD_APP_ID}

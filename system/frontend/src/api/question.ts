@@ -1,0 +1,17 @@
+import requert from "@/utils/fetch"
+export const createQuestion = (data: any) => requert({ url: "/que/addQue", method: "post", data }, true)
+export const updateQuestion = (data: any) => requert({ url: "/que/update", method: "post", data }, true)
+export const deleteQuestion = (data: any) => requert({ url: "/que/delete", data }, true)
+export const getQuestionList = (data: any) => requert({ url: "/que/getQueList", data })
+export const getQuestionInfo = (data: any) => requert({ url: "/que/getQueById", data })
+
+export const getExamList = () => requert({ url: "/que/practice" })
+export const getLikeQuestionList = (data: any) => requert({ url: "/favorites/getFavoritesList", data })
+export const addLikeQuestion = (data: any) => requert({ url: "/favorites/addFavorites", data }, true)
+export const deleteLikeQuestion = (data: any) => requert({ url: "/favorites/deleteFavorites", data }, true)
+export const sendAnswer = (data: any) => requert({ url: "/que/saveQueRecord", method: "post", data })
+export const listAll = (data: any) => requert({ url: "/que/listAll" })
+export const sendVideoAnswer = (data: any) => requert({ url: "/que/send", method: "post", data })
+export const getQueList = (data: any) => requert({url:"/que/answer",data})
+export const getQueDtails = (id:any) => requert({url:`/que/answerDetails/${id}`})
+export const setVideoRecord = (data: any) => requert({ url: "/videoPopQue/setVideoRecord", method: "post", data })

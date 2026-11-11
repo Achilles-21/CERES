@@ -1,0 +1,11 @@
+# Lightweight slide runtime; also included by ../requirements.txt.
+autogen-core
+autogen-ext[openai]
+openai
+python-dotenv
+pydantic
+requests
+fastapi==0.121.3
+uvicorn[standard]==0.38.0
+websockets
+requests-toolbelt

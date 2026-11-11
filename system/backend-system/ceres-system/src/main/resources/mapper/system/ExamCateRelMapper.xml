@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceres.system.mapper.ExamCateRelMapper">
+
+    <delete id="delExamCateRel">
+        delete from exam_cate_rel where cate_id = #{cateId}
+    </delete>
+
+    <insert id="setExamCateRel">
+        INSERT INTO
+        exam_cate_rel(cate_id, exam_id)
+        VALUES
+        <foreach collection="queIds" item="exam" index="index" separator=",">
+        (
+            #{cateId},
+            #{exam}
+        )
+        </foreach>
+    </insert>
+
+    <select id="getExamRelList" resultType="com.ceres.system.domain.ExamCateRel">
+        select * from exam_cate_rel where cate_id = #{cateId}
+    </select>
+
+</mapper>

@@ -1,0 +1,24 @@
+# Model and slide runtime dependencies for the shared Python 3.10 environment.
+# GPU PyTorch build and BLIP2/LAVIS compatibility must be selected for your hardware.
+fastapi==0.121.3
+uvicorn==0.38.0
+python-multipart==0.0.20
+pydantic
+openai
+langchain
+langchain-core
+langchain-community
+langchain-openai
+langchain-text-splitters
+langchain-chroma
+numpy==1.26.4
+pillow==10.4.0
+pydub==0.25.1
+requests
+websocket-client
+torch
+salesforce-lavis
+faiss-cpu
+chardet
+
+-r slidegen/requirements.txt

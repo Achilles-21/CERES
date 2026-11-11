@@ -1,0 +1,61 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+build/
+target/
+*.jar
+*.war
+*.class
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+logs/
+*.log
+
+# Local data / models
+backend-model/LocalData/
+backend-model/Client/
+
+# Env / secrets
+.env
+.env.local
+*.local
+
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Frontend is tracked by this root repository; keep generated files ignored.
+
+CLAUDE.md
+.claude/
+
+# backend-model data ignore
+backend-model/LocalData/*
+backend-model/Client/Audio/*
+backend-model/Client/Image/*
+
+backend-model/module_RAG/medrag/corpus/*
+backend-model/module_RAG/medrag/corpus.tar.gz
+backend-model/module_RAG/medrag/messages
+backend-model/module_RAG/medrag/messages.error
+
+backend-model/server/audio_saved
+backend-model/server/chat_history/*
+backend-model/server/log/*
+backend-model/server/tts_audio/*
+
+backend-model/EnvironmentSetup
+
+subsystem-slideGen/SlideCache/*

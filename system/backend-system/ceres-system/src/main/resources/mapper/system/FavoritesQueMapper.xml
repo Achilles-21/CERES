@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceres.system.mapper.FavoritesQueMapper">
+
+    <select id="getFavoritesList" resultType="com.ceres.system.domain.vo.resp.FavoriteQuestionCardResp">
+        select fq.id as favoriteId,
+               fq.que_id as queId,
+               fq.create_time as favoriteTime,
+               q.course_id as courseId,
+               q.type,
+               q.description,
+               q.content,
+               q.choice_a as choiceA,
+               q.choice_b as choiceB,
+               q.choice_c as choiceC,
+               q.choice_d as choiceD,
+               q.choice_e as choiceE,
+               q.choice_f as choiceF,
+               q.answer,
+               q.answer_explain as answerExplain,
+               q.img_url as imgUrl,
+               q.img_id as imgId
+        from favorites_que fq
+            inner join que q on fq.que_id = q.id
+        where fq.user_id = #{userId} and q.del_flag = '0'
+        order by fq.create_time desc, fq.id desc
+    </select>
+</mapper>

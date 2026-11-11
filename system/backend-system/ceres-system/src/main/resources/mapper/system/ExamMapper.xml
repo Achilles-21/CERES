@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceres.system.mapper.ExamMapper">
+
+    <select id="selectListByCateId" resultType="com.ceres.system.domain.Exam">
+        select e.*
+        from
+            exam e
+        inner join exam_cate_rel r on r.exam_id = e.id
+        where r.cate_id = #{cateId}
+        order by r.id asc
+    </select>
+
+</mapper>

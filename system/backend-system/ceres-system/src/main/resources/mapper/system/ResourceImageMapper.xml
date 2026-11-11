@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceres.system.mapper.ResourceImageMapper">
+
+    <select id="selectImageList" resultType="com.ceres.system.domain.vo.resp.ResourceImageResp">
+        select ri.id, ri.name, ri.file_id, ri.create_time, ri.create_by, ri.description, fi.size, fi.file_url as imageUrl
+        from resource_image ri
+        left join file_info fi on ri.file_id = fi.id
+        where ri.del_flag = '0'
+        <if test="name != null and name != ''">
+            and ri.name like concat('%', #{name}, '%')
+        </if>
+    </select>
+</mapper>

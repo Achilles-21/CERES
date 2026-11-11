@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# 训练运行产物
+output/
+traj_dump/
+traj_dump_smoke/
+checkpoint-*/
+*.log
+
+# 缓存
+.llm_cache/
+.cache/
+
+# 密钥与本地配置（切勿提交）
+glm-api
+deepseek-api
+.env
+*.key
+*.pem
+
+# 原始数据（用户自行准备，不放入仓库）
+RAW/
+
+# Online system: secrets and machine-specific settings
+.env.*
+!.env.example
+!.env.*.example
+*.local.yml
+*.local.yaml
+*.local.properties
+.idea/
+.vscode/
+.ipynb_checkpoints/
+# Dependencies and build outputs
+node_modules/
+target/
+dist/
+*.jar
+*.tsbuildinfo
+# Private runtime content and model artifacts
+runtime/
+logs/
+log/
+LocalData/
+SlideCache/
+chat_history/
+audio_saved/
+tts_audio/
+corpus/
+corpus.tar.gz
+vectors/
+messages
+messages.error
+*.faiss
+*.index
+*.npy
+*.pkl
+*.pt
+*.pth
+*.safetensors

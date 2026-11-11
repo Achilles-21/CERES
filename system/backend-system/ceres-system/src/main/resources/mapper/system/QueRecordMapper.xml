@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceres.system.mapper.QueRecordMapper">
+
+    <select id="getQueRecordList" resultType="com.ceres.system.domain.vo.resp.QueAnswerRecordResp">
+        select u.user_id, u.username, count(distinct qr.que_id)
+            from sys_user u
+        left join que_record qr on u.user_id = qr.user_id
+        where u.del_flag = '0'
+    </select>
+</mapper>
